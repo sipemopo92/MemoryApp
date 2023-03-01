@@ -6,19 +6,22 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MainComponent } from './components/main/main.component';
 import { GameComponent } from './components/main/game/game.component';
+import { EndDialogComponent } from './components/main/game/end-dialog/end-dialog.component';
+import { GameCardComponent } from './components/main/game/game-card/game-card.component';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
-import { GameCardComponent } from './components/main/game/game-card/game-card.component';
+import {MatCardModule} from '@angular/material/card';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainComponent,
     GameComponent,
-    GameCardComponent
+    GameCardComponent,
+    EndDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +30,8 @@ import { GameCardComponent } from './components/main/game/game-card/game-card.co
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
-    MatDialogModule
+    MatDialogModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

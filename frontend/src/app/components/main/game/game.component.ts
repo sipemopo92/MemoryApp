@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { CardData } from 'src/app/models/card-data.model';
+import { EndDialogComponent } from './end-dialog/end-dialog.component';
 
 @Component({
   selector: 'app-game',
@@ -22,6 +23,16 @@ export class GameComponent {
 
   matchedCount = 0;
 
+  startButtonMsg = 'Start';
+  startButtonDisabled = false;
+  isStartGame = false;
+
+
+  maximumTime = 30000;
+  timer!: any;
+  startTime!: number;
+  playTime!: number;
+
   shuffleArray(anArray: any[]): any[] {
     return anArray.map(a => [Math.random(), a])
       .sort((a, b) => a[0] - b[0])
@@ -34,6 +45,40 @@ export class GameComponent {
 
   ngOnInit(): void {
     this.setupCards();
+  }
+
+  startGame() {
+    this.startButtonDisabled = true;
+    setTimeout( () => {
+      this.isStartGame = true;
+      this.startTimer();
+    }, 3000);
+    this.startButtonMsg = '3';
+    for (let i = 2; i >= 0; i--) {
+      setTimeout(() => {
+        if(i == 0) this.startButtonMsg = 'Game';
+        else this.startButtonMsg = i.toString();
+      }, (3 - i) * 1000);
+    }
+  }
+
+  startTimer() {
+    this.startTime = Date.now();
+    this.timer = setTimeout( () => {
+      const dialogRef = this.dialog.open(EndDialogComponent, {
+        disableClose: true,
+        data: { win: false }
+      });
+
+      dialogRef.afterClosed().subscribe(() => {
+        this.restart();
+      });
+    }, this.maximumTime)
+  }
+
+  stopTimer() {
+    clearTimeout(this.timer);
+    this.playTime = Date.now() - this.startTime;
   }
 
   setupCards(): void {
@@ -84,13 +129,15 @@ export class GameComponent {
         console.log(this.matchedCount);
 
         if (this.matchedCount === this.cardImages.length) {
-          // const dialogRef = this.dialog.open(RestartDialogComponent, {
-          //   disableClose: true
-          // });
+          this.stopTimer();
+          const dialogRef = this.dialog.open(EndDialogComponent, {
+            disableClose: true,
+            data: { win: true }
+          });
 
-          // dialogRef.afterClosed().subscribe(() => {
-          //   this.restart();
-          // });
+          dialogRef.afterClosed().subscribe(() => {
+            this.restart();
+          });
         }
       }
 
@@ -98,6 +145,9 @@ export class GameComponent {
   }
 
   restart(): void {
+    this.startButtonDisabled = false;
+    this.startButtonMsg = 'Start'
+    this.isStartGame = false;
     this.matchedCount = 0;
     this.setupCards();
   }

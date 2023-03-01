@@ -6,6 +6,25 @@
     justify-content: center;
 }
 
+.large-button {
+    font-size: 20px;
+    padding: 32px 32px;
+}
+
+.my-button-disabled:disabled {
+    background-color: rgb(112, 10, 10);
+    color: white;
+    /* Colore desiderato per il pulsante disabilitato */
+}
+
+.countdown-card {
+
+    margin: 0 auto;
+    margin: 0 auto;
+
+    width: 400px;
+}
+
 @media (max-width: 600px) {
     .grid {
         grid-template-columns: repeat(2, 150px);
