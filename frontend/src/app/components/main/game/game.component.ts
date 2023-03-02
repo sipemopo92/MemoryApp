@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { CardData } from 'src/app/models/card-data.model';
 import { EndDialogComponent } from './end-dialog/end-dialog.component';
@@ -8,14 +8,14 @@ import { EndDialogComponent } from './end-dialog/end-dialog.component';
   templateUrl: './game.component.html',
   styleUrls: ['./game.component.scss']
 })
-export class GameComponent {
+export class GameComponent implements OnDestroy{
 
   cardImages = [
     'pDGNBK9A0sk',
     'fYDrhbVlV1E',
     'qoXgaF27zBc',
     'b9drVB7xIOI',
-    'TQ-q5WAVHj0'
+    '-WBYxmW4yuw'
   ];
   cards: CardData[] = [];
 
@@ -25,13 +25,14 @@ export class GameComponent {
 
   startButtonMsg = 'Start';
   startButtonDisabled = false;
+  startTimeout!: any;
   isStartGame = false;
 
 
   maximumTime = 30000;
   timer!: any;
   startTime!: number;
-  playTime!: number;
+  score!: number;
 
   shuffleArray(anArray: any[]): any[] {
     return anArray.map(a => [Math.random(), a])
@@ -43,13 +44,19 @@ export class GameComponent {
 
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.setupCards();
+  }
+
+  ngOnDestroy() {
+    clearTimeout(this.startTimeout);
+    clearTimeout(this.timer);
+
   }
 
   startGame() {
     this.startButtonDisabled = true;
-    setTimeout( () => {
+    this.startTimeout = setTimeout( () => {
       this.isStartGame = true;
       this.startTimer();
     }, 3000);
@@ -67,7 +74,7 @@ export class GameComponent {
     this.timer = setTimeout( () => {
       const dialogRef = this.dialog.open(EndDialogComponent, {
         disableClose: true,
-        data: { win: false }
+        data: { win: false, score: 0 }
       });
 
       dialogRef.afterClosed().subscribe(() => {
@@ -78,7 +85,7 @@ export class GameComponent {
 
   stopTimer() {
     clearTimeout(this.timer);
-    this.playTime = Date.now() - this.startTime;
+    this.score = this.maximumTime - ( Date.now() - this.startTime);
   }
 
   setupCards(): void {
@@ -126,13 +133,13 @@ export class GameComponent {
 
       if (nextState === 'matched') {
         this.matchedCount++;
-        console.log(this.matchedCount);
 
         if (this.matchedCount === this.cardImages.length) {
           this.stopTimer();
+          console.log(this.score);
           const dialogRef = this.dialog.open(EndDialogComponent, {
             disableClose: true,
-            data: { win: true }
+            data: { win: true, score: this.score }
           });
 
           dialogRef.afterClosed().subscribe(() => {

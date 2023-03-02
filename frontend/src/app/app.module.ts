@@ -13,7 +13,10 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
-import {MatCardModule} from '@angular/material/card';
+import { MatCardModule } from '@angular/material/card';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatDividerModule } from '@angular/material/divider';
+import { RankingComponent } from './components/main/ranking/ranking.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +24,8 @@ import {MatCardModule} from '@angular/material/card';
     MainComponent,
     GameComponent,
     GameCardComponent,
-    EndDialogComponent
+    EndDialogComponent,
+    RankingComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +35,9 @@ import {MatCardModule} from '@angular/material/card';
     MatButtonModule,
     MatIconModule,
     MatDialogModule,
-    MatCardModule
+    MatCardModule,
+    MatSidenavModule,
+    MatDividerModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

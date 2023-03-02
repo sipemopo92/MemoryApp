@@ -1,2 +1,35 @@
-<app-game></app-game>
+<mat-toolbar class="mat-elevation-z8" color="primary">
+    <button mat-icon-button *ngIf="isScreenSmall" (click)="sidenav.toggle()">
+        <mat-icon *ngIf="!sidenav.opened"> menu </mat-icon>
+        <mat-icon *ngIf="sidenav.opened"> close </mat-icon>
+    </button>
+    MemoryApp
+</mat-toolbar>
 
+<mat-sidenav-container>
+    <mat-sidenav #sidenav="matSidenav" color="primary" class="mat-elevation-z8" [mode]="isScreenSmall ?'over' : 'side'" [opened]="!isScreenSmall">
+        <img class="avatar mat-elevation-z8" src="assets/logo.png"/>
+
+        <h4 class="name">sipemopo92</h4>
+
+        <mat-divider></mat-divider>
+
+        <button mat-button class="menu-button" routerLink="/game">
+            <mat-icon>sports_esports</mat-icon>
+            <span>Game</span>
+        </button>
+        <button mat-button class="menu-button" routerLink="/ranking">
+            <mat-icon>star</mat-icon>
+            <span>Ranking</span>
+        </button>
+
+
+        <mat-divider></mat-divider>
+
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <div class="content mat-elevation-z8">
+            <router-outlet></router-outlet>
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>

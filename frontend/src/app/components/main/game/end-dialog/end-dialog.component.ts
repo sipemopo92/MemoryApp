@@ -8,6 +8,6 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class EndDialogComponent {
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: {win: boolean}) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: {win: boolean, score: number}) { }
 
 }

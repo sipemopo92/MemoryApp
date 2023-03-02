@@ -1,15 +1,33 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { GameComponent } from './components/main/game/game.component';
 import { MainComponent } from './components/main/main.component';
+import { RankingComponent } from './components/main/ranking/ranking.component';
 
 const routes: Routes = [
   {
-    path: 'main',
-    component: MainComponent
+    path: '',
+    component: MainComponent,
+    children: [
+      {
+        path: "",
+        redirectTo: "game",
+        pathMatch: "full",
+      },
+      {
+        path: 'game',
+        component: GameComponent
+      },
+      {
+        path: 'ranking',
+        component: RankingComponent
+      }
+    ]
   },
   {
     path: '**',
-    redirectTo: 'main'
+    redirectTo: '',
+    pathMatch: 'full'
   }
 ];
 

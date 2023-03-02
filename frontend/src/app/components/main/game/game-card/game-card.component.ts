@@ -15,7 +15,7 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
         transform: 'perspective(600px) rotateY(180deg)'
       })),
       state('matched', style({
-        visibility: 'false',
+        //visibility: 'false',
         transform: 'scale(0.05)',
         opacity: 0
       })),

@@ -1,7 +1,8 @@
 <div *ngIf="data.win">
     <h2 mat-dialog-title>Congratulations!</h2>
     <mat-dialog-content class="mat-typography">
-        You've completed the game.
+        You've completed the game  <br>
+        <b>SCORE: {{data.score}}</b>
     </mat-dialog-content>
 </div>
 <div *ngIf="!data.win">
