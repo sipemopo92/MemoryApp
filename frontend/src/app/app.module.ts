@@ -17,6 +17,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatDividerModule } from '@angular/material/divider';
 import { RankingComponent } from './components/main/ranking/ranking.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { RankingComponent } from './components/main/ranking/ranking.component';
     GameComponent,
     GameCardComponent,
     EndDialogComponent,
-    RankingComponent
+    RankingComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

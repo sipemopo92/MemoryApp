@@ -1,6 +1,6 @@
 <div class="p-16">
     <div class="text-center">
-        <button mat-raised-button color="primary" class="large-button" [disabled]="startButtonDisabled"
+        <button mat-raised-button color="accent" class="large-button" [disabled]="startButtonDisabled"
             [ngClass]="{'my-button-disabled': startButtonDisabled}" (click)="startGame()">{{startButtonMsg}}</button>
     </div>
     <div *ngIf="isStartGame">

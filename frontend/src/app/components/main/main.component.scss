@@ -1,3 +1,6 @@
+.mat-drawer-container {
+    background-color: lightgray;
+}
 
 mat-sidenav {
     margin: 16px;
@@ -16,7 +19,7 @@ mat-sidenav {
     margin: 16px;
     padding: 16px;
     overflow: auto;
-    background-color: grey;
+    background-color: rgba(255, 255, 255, 0.74);
 }
 
 mat-sidenav-container {
@@ -52,11 +55,6 @@ mat-sidenav-container {
     font-weight: normal;
 }
 
-.designation {
-    margin-top: 2px;
-    font-size: 0.7rem;
-    color: lightgrey;
-}
 
 mat-divider {
     margin-top: 16px;
