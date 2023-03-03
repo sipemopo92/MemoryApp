@@ -11,6 +11,12 @@ async function getUserById(id) {
     return result;
 }
 
+async function getUserByName(name) {
+    const querySql = 'SELECT * FROM users WHERE name = ?'
+    const [result,] = await pool.query(querySql, [name]);
+    return result;
+}
+
 async function addUser(nome) {
     const querySql = 'INSERT INTO users (name) VALUES (?)';
     const [result, ] = await pool.query(querySql, [nome]);
@@ -23,5 +29,6 @@ async function addUser(nome) {
 module.exports = {
     getUsers,
     getUserById,
+    getUserByName,
     addUser,
 };

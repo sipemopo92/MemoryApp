@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 import { MainComponent } from './components/main/main.component';
 import { GameComponent } from './components/main/game/game.component';
 import { EndDialogComponent } from './components/main/game/end-dialog/end-dialog.component';
@@ -18,6 +19,10 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatDividerModule } from '@angular/material/divider';
 import { RankingComponent } from './components/main/ranking/ranking.component';
 import { LoginComponent } from './components/login/login.component';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { FormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -33,6 +38,8 @@ import { LoginComponent } from './components/login/login.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule,
+    FormsModule,
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
@@ -40,6 +47,8 @@ import { LoginComponent } from './components/login/login.component';
     MatCardModule,
     MatSidenavModule,
     MatDividerModule,
+    MatInputModule,
+    MatFormFieldModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,22 +1,28 @@
 <div class="container">
     <mat-card class="login-card">
         <mat-card-header>
-            <mat-card-title>Login</mat-card-title>
         </mat-card-header>
-        <div style="text-align: center;">
+        <div class="text-center">
             <img class="logo mat-elevation-z8" src="assets/logo.png">
         </div>
         <mat-divider></mat-divider>
-        <mat-card-content>
-            <p>
-                The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-                A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-                bred for hunting.
-            </p>
-        </mat-card-content>
+        <div class="text-center">
+            <mat-card-content>
+                <mat-form-field appearance="fill">
+                    <mat-label>Your Nickname</mat-label>
+                    <input matInput [(ngModel)]="name" required>
+                </mat-form-field>
+            </mat-card-content>
+        </div>
+        <div *ngIf="showMessageUserDE" class="text-center">
+            User doesn't exist
+        </div>
+        <div *ngIf="showMessageUserAE" class="text-center">
+            User already exists
+        </div>
         <mat-card-actions align="end">
-            <button mat-raised-button color="accent" class="m-8">LOGIN</button>
-            <button mat-raised-button color="accent" class="m-8">SIGNIN</button>
+            <button mat-raised-button color="accent" class="m-8" (click)="login()">LOGIN</button>
+            <button mat-raised-button color="accent" class="m-8" (click)="signUp()">SIGN UP</button>
         </mat-card-actions>
     </mat-card>
 </div>

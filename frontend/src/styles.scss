@@ -4,6 +4,31 @@ html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 
+.container-fluid {
+    width: 100%;
+    padding-right: 8px;
+    padding-left: 8px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: space-around;
+    margin-left: -8px;
+    margin-right: -8px;
+}
+
+.col {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    margin-left: 8px;
+    margin-right: 8px;
+}
+
 .text-center {
     text-align: center;
 }

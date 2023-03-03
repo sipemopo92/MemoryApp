@@ -10,7 +10,7 @@
     <mat-sidenav #sidenav="matSidenav" color="primary" class="mat-elevation-z8" [mode]="isScreenSmall ?'over' : 'side'" [opened]="!isScreenSmall">
         <img class="avatar mat-elevation-z8" src="assets/logo.png"/>
 
-        <h4 class="name">sipemopo92</h4>
+        <h4 class="name">{{user.name}}</h4>
 
         <mat-divider></mat-divider>
 
@@ -25,6 +25,10 @@
 
 
         <mat-divider></mat-divider>
+        <button mat-button class="menu-button" (click)="logout()">
+            <mat-icon>logout</mat-icon>
+            <span>Logout</span>
+        </button>
 
     </mat-sidenav>
     <mat-sidenav-content>
