@@ -154,7 +154,6 @@ export class GameComponent implements OnDestroy{
 
         if (this.matchedCount === this.cardImages.length) {
           this.stopTimer();
-          console.log(this.score);
           this.scoresService.addScore(this.user.id, this.score).subscribe( res => {
             if (res.status == 'KO') {
               console.error(res.message);

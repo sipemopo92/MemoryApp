@@ -26,4 +26,14 @@ export class ScoresService {
     return this.httpClient.get<ResponseScores>(this.apiUrl);
   }
 
+
+  getAboveScoresByScore(score: number) {
+    return this.httpClient.get<ResponseScores>(this.apiUrl + '/aboveScoresByScore?score=' + score);
+  }
+
+
+  getBelowScoresByScore(score: number) {
+    return this.httpClient.get<ResponseScores>(this.apiUrl + '/belowScoresByScore?score=' + score);
+  }
+
 }

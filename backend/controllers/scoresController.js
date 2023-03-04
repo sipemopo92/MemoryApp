@@ -44,9 +44,36 @@ async function addScore(idUser, score) {
 }
 
 
+async function getAboveScoresByScore(score) {
+    const querySql = `
+        SELECT s.*, u.name
+        FROM scores s
+        LEFT OUTER JOIN users u ON u.id = s.id_user
+        WHERE s.score > ?
+        ORDER BY score ASC
+        LIMIT 3`;
+    const [result,] = await pool.query(querySql, [score]);
+    return result; 
+}
+
+async function getBelowScoresByScore(score) {
+    const querySql = `
+        SELECT s.*, u.name
+        FROM scores s
+        LEFT OUTER JOIN users u ON u.id = s.id_user
+        WHERE s.score < ?
+        ORDER BY score DESC
+        LIMIT 3`;
+    const [result,] = await pool.query(querySql, [score]);
+    return result; 
+}
+
+
 module.exports = {
     getScoreById,
     addScore,
     getBestScores,
-    getScoresByUserId
+    getScoresByUserId,
+    getAboveScoresByScore,
+    getBelowScoresByScore
 };
