@@ -30,7 +30,6 @@ export class RankingComponent implements OnInit {
         for (let i = 0; i < this.scores.length; i++) {
           this.scores[i].index = i+1;
         }
-        console.log(this.scores)
       } else {
         console.error(res.message);
       }

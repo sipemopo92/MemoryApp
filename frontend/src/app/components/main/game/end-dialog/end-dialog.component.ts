@@ -22,7 +22,6 @@ export class EndDialogComponent implements OnInit{
     this.scoresService.getAboveScoresByScore(this.data.score).subscribe( res => {
       if (res.status = 'OK') {
         this.aboveScores = res.data;
-        console.log(this.aboveScores)
       } else {
         console.error(res.message);
       }
