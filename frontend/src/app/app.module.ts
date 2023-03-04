@@ -19,9 +19,12 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatDividerModule } from '@angular/material/divider';
 import { RankingComponent } from './components/main/ranking/ranking.component';
 import { LoginComponent } from './components/login/login.component';
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule} from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
+import { MatTableModule } from '@angular/material/table';
+import { UserScoresComponent } from './components/main/user-scores/user-scores.component';
+import { MatListModule } from '@angular/material/list';
 
 
 @NgModule({
@@ -32,7 +35,8 @@ import { FormsModule } from '@angular/forms';
     GameCardComponent,
     EndDialogComponent,
     RankingComponent,
-    LoginComponent
+    LoginComponent,
+    UserScoresComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +52,9 @@ import { FormsModule } from '@angular/forms';
     MatSidenavModule,
     MatDividerModule,
     MatInputModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatTableModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

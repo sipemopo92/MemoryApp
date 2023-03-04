@@ -4,6 +4,7 @@ import { LoginComponent } from './components/login/login.component';
 import { GameComponent } from './components/main/game/game.component';
 import { MainComponent } from './components/main/main.component';
 import { RankingComponent } from './components/main/ranking/ranking.component';
+import { UserScoresComponent } from './components/main/user-scores/user-scores.component';
 import { AuthGuardService } from './services/auth-guard.service';
 
 const routes: Routes = [
@@ -25,6 +26,10 @@ const routes: Routes = [
       {
         path: 'game',
         component: GameComponent
+      },
+      {
+        path: 'user-scores',
+        component: UserScoresComponent
       },
       {
         path: 'ranking',

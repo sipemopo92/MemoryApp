@@ -1,6 +1,9 @@
 import { Component, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { CardData } from 'src/app/models/card-data.model';
+import { User } from 'src/app/models/user';
+import { ScoresService } from 'src/app/services/scores.service';
+import { UsersService } from 'src/app/services/users.service';
 import { EndDialogComponent } from './end-dialog/end-dialog.component';
 
 @Component({
@@ -9,6 +12,8 @@ import { EndDialogComponent } from './end-dialog/end-dialog.component';
   styleUrls: ['./game.component.scss']
 })
 export class GameComponent implements OnDestroy{
+
+  user!: User;
 
   cardImages = [
     'pDGNBK9A0sk',
@@ -40,19 +45,25 @@ export class GameComponent implements OnDestroy{
       .map(a => a[1]);
   }
 
-  constructor(private dialog: MatDialog) {
+  constructor(
+    private dialog: MatDialog, 
+    private usersService: UsersService,
+    private scoresService: ScoresService
+    ) { }
 
-  }
 
   ngOnInit() {
+    this.user = this.usersService.getUserLogged()!;
     this.setupCards();
   }
+
 
   ngOnDestroy() {
     clearTimeout(this.startTimeout);
     clearTimeout(this.timer);
 
   }
+
 
   startGame() {
     this.startButtonDisabled = true;
@@ -69,9 +80,15 @@ export class GameComponent implements OnDestroy{
     }
   }
 
+
   startTimer() {
     this.startTime = Date.now();
     this.timer = setTimeout( () => {
+      this.scoresService.addScore(this.user.id, 0).subscribe( res => {
+        if (res.status == 'KO') {
+          console.error(res.message);
+        }
+      });
       const dialogRef = this.dialog.open(EndDialogComponent, {
         disableClose: true,
         data: { win: false, score: 0 }
@@ -83,10 +100,12 @@ export class GameComponent implements OnDestroy{
     }, this.maximumTime)
   }
 
+
   stopTimer() {
     clearTimeout(this.timer);
     this.score = this.maximumTime - ( Date.now() - this.startTime);
   }
+
 
   setupCards(): void {
     this.cards = [];
@@ -95,14 +114,12 @@ export class GameComponent implements OnDestroy{
         imageId: image,
         state: 'default'
       };
-
       this.cards.push({ ...cardData });
       this.cards.push({ ...cardData });
-
     });
-
     this.cards = this.shuffleArray(this.cards);
   }
+
 
   cardClicked(index: number): void {
     const cardInfo = this.cards[index];
@@ -122,6 +139,7 @@ export class GameComponent implements OnDestroy{
     }
   }
 
+
   checkForCardMatch(): void {
     setTimeout(() => {
       const cardOne = this.flippedCards[0];
@@ -137,6 +155,11 @@ export class GameComponent implements OnDestroy{
         if (this.matchedCount === this.cardImages.length) {
           this.stopTimer();
           console.log(this.score);
+          this.scoresService.addScore(this.user.id, this.score).subscribe( res => {
+            if (res.status == 'KO') {
+              console.error(res.message);
+            }
+          });
           const dialogRef = this.dialog.open(EndDialogComponent, {
             disableClose: true,
             data: { win: true, score: this.score }

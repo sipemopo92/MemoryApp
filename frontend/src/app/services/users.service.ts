@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { responseUsers } from '../models/responseApi';
+import { ResponseUsers } from '../models/responseApi';
 import { User } from '../models/user';
 
 @Injectable({
@@ -35,16 +35,16 @@ export class UsersService {
 
 
   getUsers() {
-    return this.httpClient.get<responseUsers>(this.apiUrl);
+    return this.httpClient.get<ResponseUsers>(this.apiUrl);
   }
 
   getUserByName(name: string) {
-    return this.httpClient.get<responseUsers>(this.apiUrl + '/userByName?name=' + name);
+    return this.httpClient.get<ResponseUsers>(this.apiUrl + '/userByName?name=' + name);
   }
 
   addUser(name: string) {
     let body = {name: name}
-    return this.httpClient.post<responseUsers>(this.apiUrl, body);
+    return this.httpClient.post<ResponseUsers>(this.apiUrl, body);
   }
 
   logout() {

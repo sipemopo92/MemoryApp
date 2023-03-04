@@ -1,19 +1,18 @@
+<div>
+    Your last score: {{lastScore}}
+</div>
+<div>
+    Your best score: {{bestScore}}
+</div>
+
 <table mat-table [dataSource]="scores" style="background-color: #f4f4f4" >
-    <ng-container matColumnDef="index">
-        <th mat-header-cell *matHeaderCellDef> # </th>
-        <td mat-cell *matCellDef="let score">{{ score.index }}</td>
-    </ng-container>
-    <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef> Name </th>
-        <td mat-cell *matCellDef="let score"> {{score.name}} </td>
-    </ng-container>
     <ng-container matColumnDef="score">
         <th mat-header-cell *matHeaderCellDef> Score </th>
         <td mat-cell *matCellDef="let score"> {{score.score}} </td>
     </ng-container>
     <ng-container matColumnDef="data">
         <th mat-header-cell *matHeaderCellDef> Data </th>
-        <td mat-cell *matCellDef="let score"> {{score.data.toLocaleString()}} </td>
+        <td mat-cell *matCellDef="let score"> {{score.data ? score.data.toLocaleString() : ''}} </td>
     </ng-container>
     <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true" ></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>

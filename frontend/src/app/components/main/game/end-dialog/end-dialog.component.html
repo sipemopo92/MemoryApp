@@ -1,8 +1,32 @@
 <div *ngIf="data.win">
     <h2 mat-dialog-title>Congratulations!</h2>
     <mat-dialog-content class="mat-typography">
-        You've completed the game  <br>
-        <b>SCORE: {{data.score}}</b>
+        <div>
+            You've completed the game!
+        </div>
+        <div class="text-center">
+            <b>SCORE: {{data.score}}</b>
+        </div>
+        <br>
+        <mat-divider></mat-divider>
+        <div>
+            The three scores above you:
+            <mat-list role="list">
+                <mat-list-item role="listitem">Item 1</mat-list-item>
+                <mat-list-item role="listitem">Item 2</mat-list-item>
+                <mat-list-item role="listitem">Item 3</mat-list-item>
+            </mat-list>
+        </div>
+        <br>
+        <mat-divider></mat-divider>
+        <div>
+            The three below  above you:
+            <mat-list role="list">
+                <mat-list-item role="listitem">Item 1</mat-list-item>
+                <mat-list-item role="listitem">Item 2</mat-list-item>
+                <mat-list-item role="listitem">Item 3</mat-list-item>
+            </mat-list>
+        </div>
     </mat-dialog-content>
 </div>
 <div *ngIf="!data.win">
@@ -10,7 +34,7 @@
     <mat-dialog-content class="mat-typography">
         You lost!
     </mat-dialog-content>
-    </div>
+</div>
 <mat-dialog-actions align="center">
     <button mat-raised-button color="accent" [mat-dialog-close]="true" cdkFocusInitial>Shuffle and Restart</button>
 </mat-dialog-actions>
