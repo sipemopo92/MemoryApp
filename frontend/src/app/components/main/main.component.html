@@ -3,17 +3,13 @@
         <mat-icon *ngIf="!sidenav.opened"> menu </mat-icon>
         <mat-icon *ngIf="sidenav.opened"> close </mat-icon>
     </button>
-    MemoryApp
+    <img class="logo" src="assets/logo.png"/>
 </mat-toolbar>
-
 <mat-sidenav-container>
     <mat-sidenav #sidenav="matSidenav" color="primary" class="mat-elevation-z8" [mode]="isScreenSmall ?'over' : 'side'" [opened]="!isScreenSmall">
-        <img class="avatar mat-elevation-z8" src="assets/logo.png"/>
-
+        <img class="avatar mat-elevation-z8" src="assets/avatar.png"/>
         <h4 class="name">{{user.name}}</h4>
-
         <mat-divider></mat-divider>
-
         <button mat-button class="menu-button" routerLink="/game">
             <mat-icon>sports_esports</mat-icon>
             <span>Game</span>
@@ -25,14 +21,11 @@
             <mat-icon>star</mat-icon>
             <span>Ranking</span>
         </button>
-
-
         <mat-divider></mat-divider>
         <button mat-button class="menu-button" (click)="logout()">
             <mat-icon>logout</mat-icon>
             <span>Logout</span>
         </button>
-
     </mat-sidenav>
     <mat-sidenav-content>
         <div class="content mat-elevation-z8">
