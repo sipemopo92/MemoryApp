@@ -9,7 +9,7 @@ import { User } from '../models/user';
 export class UsersService {
 
   private apiUrl = 'http://localhost:3000/users'
-  private test = true;
+  private test = false;
   private user: User | null = null;
   private userLogged: boolean = false;
 

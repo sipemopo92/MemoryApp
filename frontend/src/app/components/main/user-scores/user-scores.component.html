@@ -1,11 +1,13 @@
-<div>
-    Your last score: {{lastScore}}
+<div class="text-center" style="margin-top: 10px;">
+    <h2>Your last score: <p class="score">{{lastScore}}</p></h2>
 </div>
-<div>
-    Your best score: {{bestScore}}
+<div class="text-center">
+    <h2>Your best score: <p class="score">{{bestScore}}</p></h2>
 </div>
 
-<table mat-table [dataSource]="scores" style="background-color: #f4f4f4" >
+
+<div class="table-container">
+<table mat-table [dataSource]="scores" class="table">
     <ng-container matColumnDef="score">
         <th mat-header-cell *matHeaderCellDef> Score </th>
         <td mat-cell *matCellDef="let score"> {{score.score}} </td>
@@ -17,3 +19,4 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true" ></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
+</div>
